@@ -1,0 +1,122 @@
+*{                                 /* Set the font size of the font of the whole webpage */
+    font-size: 15px;
+}
+
+body{                              /* Set the background color of the whole webpage */
+    background-color: black;
+    color: black;
+}
+
+.canvas-layout{                    /* Set the position of the canvas */
+    float:left;
+    margin-right: 20px;
+}
+
+.menu{                             /* Set the style and position for menu box */
+    display:inline-block;
+    background-color: black;
+    border-style: dashed;
+    border-color: white;
+}
+
+.gasket-menu-container{            /* Set the style and position for gasket menu box */
+    background-color:grey;
+    border-color:white;
+    margin:20px;
+    padding: 10px;
+}
+
+.gasket-properties-word{           /* Set the style and position for the "gasket properties" word */
+    background-color: black;
+    color: white;
+    width: 115px;
+	padding-left: 5px;
+}
+
+.colors-selection-word{            /* Set the style and position for the "color selection" word */
+	background-color: black;
+    color: white;
+    width: 105px;
+	padding-left: 5px;
+}
+
+.Colours{                          /* Set the position for the container that holds the three color selector boxes */
+	padding-bottom:10px;
+}
+ 
+#color1, #color2, #color3{         /* Set the position for each color selector boxes */
+	margin-left: 26px;
+	margin-right: 20px;
+}
+
+.animation-menu-container{         /* Set the style and position for animation properties menu box */
+    background-color: grey;
+    border-color: white;
+    margin: 20px;
+    padding:10px;
+}
+
+.animation-properties-word{        /* Set the style and position for "animation properties" word */
+    background-color: black;
+    color: white;
+    width: 135px;
+	padding-left: 5px;
+}
+
+.buttons{                           /* Set the postition for all the buttons */
+    padding-left: 85px;
+}
+
+#play-button, #restart-button{      /* Set the style and position for play/pause button and restart button */
+    background-color: white;
+    border:none;
+    padding: 20px;
+    color: black;
+    opacity: 0.6;
+    box-shadow: 0 9px #999;
+}
+
+#play-button:hover, #restart-button:hover{     /* Set the style for when cursor is positioned over the play/pause button and restart button */
+    background: white;
+    cursor: pointer;
+    color:black;
+    opacity:1;
+}
+
+#play-button:active, #restart-button:active{   /* Set the style for when the play/pause button and restart button are being clicked */
+    background-color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.member-info{                     /* Set the style and position for font of the member information */
+    color: white;
+    margin: 20px;
+}
+
+.slider{                          /* set the style for all the sliders */
+    appearance: none;
+    width: 10vw;
+    height: 1vh;
+    background-color: black;
+    outline: none;
+    opacity: 0.7;
+}
+
+.slider:hover{                    /* Set the style for slider when the cursor is positioned over the slider */
+    opacity: 1;
+}
+  
+.slider:disabled{                  /* Set the color of the slider when the cursor is not positioned over the slider */
+    background-color: grey;
+}
+  
+.slider::-webkit-slider-thumb{     /* Set the style for slider thumb */
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1vw;
+    height: 1vw;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}

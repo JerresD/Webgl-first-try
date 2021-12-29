@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>3D Sierpinski Gasket TV Ident</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+in vec4 aPosition;
+in vec4 aColor;
+out vec4 vColor;
+
+uniform vec3 uTheta; 
+uniform vec2 uTrans;
+uniform float uScale;
+
+void
+main()
+{
+    vec3 angles = radians( uTheta );
+    vec3 c = cos( angles );
+    vec3 s = sin( angles );
+
+    mat4 rx = mat4( 1.0,  0.0,  0.0, 0.0,
+		    0.0,  c.x,  s.x, 0.0,
+		    0.0, -s.x,  c.x, 0.0,
+		    0.0,  0.0,  0.0, 1.0 );
+
+    mat4 ry = mat4( c.y, 0.0, -s.y, 0.0,
+		    0.0, 1.0,  0.0, 0.0,
+		    s.y, 0.0,  c.y, 0.0,
+		    0.0, 0.0,  0.0, 1.0 );
+
+
+    mat4 rz = mat4( c.z, s.z, 0.0, 0.0,
+		    -s.z,  c.z, 0.0, 0.0,
+		    0.0,  0.0, 1.0, 0.0,
+		    0.0,  0.0, 0.0, 1.0 );
+			
+	mat4 translation = mat4(1.0, 0.0, 0.0, 0.0,
+						0.0, 1.0, 0.0, 0.0,
+                        0.0, 0.0, 1.0, 0.0,
+                        uTrans[0], uTrans[1], 0.0, 1.0);
+	
+	mat4 scaling = mat4(uScale, 0.0, 0.0, 0.0,
+                        0.0, uScale, 0.0, 0.0,
+                        0.0, 0.0, uScale, 0.0,
+                        0.0, 0.0, 0.0, 1.0);
+	
+    gl_Position = translation * scaling * rz * ry * rx * aPosition;
+	vColor = aColor;	
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+precision mediump float;
+
+in vec4 vColor;
+out vec4 fColor;
+
+void
+main()
+{
+    fColor = vColor;
+}
+</script>
+
+<script type="text/javascript" src="Common/initShaders.js"></script>
+<script type="text/javascript" src="Common/MVnew.js"></script>
+<script type="text/javascript" src="3D Gasket TV Ident.js"></script>
+<link rel="stylesheet" href="3D Gasket TV Ident.css">
+</head>
+
+<body>
+    <!--Canvas-->
+    <div class="canvas-layout">
+        <canvas id="gl-canvas" width="512" height="512">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+    </div>
+
+    <!--Menu box-->
+    <div class="menu">
+        <!--Gasket properties menu box-->
+        <div class="gasket-menu-container">
+            <p class="gasket-properties-word"> Gasket Properties:</p>
+			
+            <!--Number of Subdivision Slider-->
+            <div class="num-of-subdivision">
+                Number of subdivision:  0 <input class="slider" id="num-subdivision" type="range"
+                min="0" max="4" step="1" value="2" />
+                4
+            </div>
+            <br>
+            
+            <!--Color selection menu-->		
+			<p class="colors-selection-word">Color selection:</p>
+			<!--Three colors selector box-->
+            <div class = "Colours">
+				<input type="color" id="color1" class="colorpicker1" value="#FF0000">
+				<input type="color" id="color2" class="colorpicker2" value="#00FF00">
+				<input type="color" id="color3" class="colorpicker3" value="#0000FF">
+			</div>
+        </div>
+
+        <!--Animation properties menu box-->
+        <div class="animation-menu-container">
+            <p class="animation-properties-word">Animation properties:</p>
+            <!--Speed of animation slider-->
+            <div>
+                Speed of animation: 0% <input class="slider" id="rotation-speed" type="range"
+                min="0" max="100" step="10" value="50" />
+                100%
+            </div><br>
+        </div>
+
+        <!--Buttons for Play/Pause and Restart-->
+        <div class="buttons">
+            <input type="button" id="play-button" value="Play/Pause">
+            <input type="button" id="restart-button" value="Restart">
+        </div><br>
+
+        <!--Group members info-->
+        <div class="member-info">
+            Created by: <br>
+            Chong Joon Sew 145903 <br>  
+            Antonio Sia Guang Yang 146354
+        </div><br>
+    </div>
+</body>
+</html>
